@@ -4,7 +4,7 @@ import func as f
 import const as c
 from datetime import datetime
 
-
+#Token of your bot
 bot = telebot.TeleBot(c.token)
 
 bot.send_message(681875938, 'Im started at {%s} (UTC+0)' %

@@ -21,7 +21,7 @@ def schelude():
         os.mkdir(get_path + '/pdf')
 
     # downloading pdf-file
-    url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
+    url = 'http://rasp.kolledgsvyazi.ru/spo.pdf' #link for your schelude in pdf format
     r = requests.get(url, allow_redirects=True)
     open('pdf/spo.pdf', 'wb').write(r.content)
     print('File downloaded\n')
