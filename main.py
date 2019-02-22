@@ -1,10 +1,11 @@
 import requests
 import telebot
 import func as f
+import const as c
 from datetime import datetime
 
 
-bot = telebot.TeleBot("634843567:AAHKu9vhul8EnlXg6X6gXP1BaFl5Y74TlXE")
+bot = telebot.TeleBot(c.token)
 
 bot.send_message(681875938, 'Im started at {%s} (UTC+0)' %
                  str(datetime.strftime(datetime.now(), "%H:%M:%S")))
