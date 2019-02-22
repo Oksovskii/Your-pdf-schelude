@@ -1,3 +1,10 @@
 
 const.py
 __pycache__/const.cpython-37.pyc
+<<<<<<< HEAD
+=======
+__pycache__/func.cpython-37.pyc
+__pycache__/func.cpython-37.pyc
+*.pyc
+>>>>>>> master
+*.pyc
