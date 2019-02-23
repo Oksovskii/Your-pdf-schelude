@@ -5,7 +5,14 @@ import imagehash
 from PIL import Image
 from pdf2image import convert_from_path
 import requests
+import time
+import telebot
+import const as c
 
+bot = telebot.TeleBot(c.token)
+
+c = sql.connect("game.db")
+cur = c.cursor()
 
 def schelude():
     get_path = os.path.abspath(os.curdir)
@@ -34,9 +41,8 @@ def schelude():
         'pdf/spo.pdf', dpi=200, output_folder='img', fmt='jpeg', output_file=str("rasp"))
     print('File converted\nStop working...')
 
-def chek_hash():
-    c = sql.connect("game.db")
-    cur = c.cursor()
+while True:
+    schelude()
     cur.execute('''SELECT hash FROM hashes''')
     value = str("%s" % cur.fetchone())
     value2 = str(imagehash.average_hash(Image.open('img/rasp-1.jpg')))
@@ -48,8 +54,10 @@ def chek_hash():
         print("hay csta")
         cur.execute("UPDATE hashes SET hash = '%s'"
                       % (value2))
+    
         c.commit()
-        c.close()
+        
+        msg = bot.send_message(681875938, 'Расписание:>')
+        bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
 
-if __name__ == "__main__":
-    chek_hash()
+    time.sleep(15)
