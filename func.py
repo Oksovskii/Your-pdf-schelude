@@ -30,3 +30,6 @@ def schelude():
     images = convert_from_path(
         'pdf/spo.pdf', dpi=200, output_folder='img', fmt='jpeg', output_file=str("rasp"))
     print('File converted\nStop working...')
+
+if __name__ == "__main__":
+    schelude()

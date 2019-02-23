@@ -1,3 +1,4 @@
 const.py
 *.pyc
 game.db
+*.jpg
