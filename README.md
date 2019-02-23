@@ -10,7 +10,7 @@ Not python modules:
 
 # Using auto script
 1) Download all modules which are specified above.
-2) Start {start_db.py} with command {python3 start_db} to create DB.
+2) Start {start_db.py} with command {python3 start_db.py} to create DB.
 3) Start file {func.py} to begin auto-send schelude after change.
 
 # Using Bot
