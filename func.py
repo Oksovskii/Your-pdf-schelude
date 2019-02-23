@@ -60,4 +60,4 @@ while True:
         msg = bot.send_message(681875938, 'Расписание:>')
         bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
 
-    time.sleep(15)
+    time.sleep(600)
