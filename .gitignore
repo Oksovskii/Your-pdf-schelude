@@ -2,3 +2,4 @@ const.py
 *.pyc
 game.db
 *.jpg
+*.pdf

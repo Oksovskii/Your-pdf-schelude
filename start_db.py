@@ -8,14 +8,14 @@ cur = c.cursor()
 
 try:
     cur.execute('''SELECT hash FROM hashes''')
-    print(cur.fetchone())
-    print(str(imagehash.average_hash(Image.open('img/rasp-1.jpg'))))
+    print("Value in table before hashing",cur.fetchone())
+    print("Hash:",str(imagehash.average_hash(Image.open('img/rasp-1.jpg'))))
     cur.execute("UPDATE hashes SET hash = '%s'"
                       % (
                         str(imagehash.average_hash(Image.open('img/rasp-1.jpg')))))
     c.commit()
     cur.execute('''SELECT hash FROM hashes''')
-    print(cur.fetchone())
+    print("Value in table after hashing",cur.fetchone())
     c.close()
 except:
 
