@@ -15,7 +15,7 @@ bot = telebot.TeleBot(c.token)
 c = sql.connect("data.db")
 cur = c.cursor()
 
-msg = bot.send_message(681875938, 'Script activated. Server time:%s' %
+msg = bot.send_message(681875938, 'Beta-script activated. Server time:%s' %
                         str(datetime.strftime(datetime.now(), "%H:%M:%S")))
 
 def schelude():
@@ -41,7 +41,7 @@ def schelude():
     print('File downloaded\n')
 
     # converting pdf-file to img {.jpeg}
-    images = convert_from_path(
+    convert_from_path(
         'pdf/spo.pdf', dpi=200, output_folder='img', fmt='jpeg', output_file=str("rasp"))
     print('File converted\nStop working...')
 
@@ -55,7 +55,7 @@ while True:
 
         if value2 == value:
             print("No changes.")
-            time.sleep(30)
+            time.sleep(60)
         else: 
             print("Changed detected. Sending...")
             cur.execute("UPDATE hashes SET hash = '%s'"
@@ -66,7 +66,7 @@ while True:
             msg = bot.send_message(681875938, 'Расписание:>')
             bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
 
-            time.sleep(30)
+            time.sleep(60)
     except: #if schelude is not deteccted time delay 2 sec.
         print("No schelude detected.")
-        time.sleep(2)
+        time.sleep(15)
