@@ -8,11 +8,15 @@ import requests
 import time
 import telebot
 import const as c
+from datetime import datetime
 
 bot = telebot.TeleBot(c.token)
 
-c = sql.connect("game.db")
+c = sql.connect("data.db")
 cur = c.cursor()
+
+msg = bot.send_message(681875938, 'Script activated. Server time:%s' %
+                        str(datetime.strftime(datetime.now(), "%H:%M:%S")))
 
 def schelude():
     get_path = os.path.abspath(os.curdir)
@@ -42,22 +46,27 @@ def schelude():
     print('File converted\nStop working...')
 
 while True:
-    schelude()
-    cur.execute('''SELECT hash FROM hashes''')
-    value = str("%s" % cur.fetchone())
-    value2 = str(imagehash.average_hash(Image.open('img/rasp-1.jpg')))
-    print("%s" % value , "%s" % value2)
+    try:
+        schelude()
+        cur.execute('''SELECT hash FROM hashes''')
+        value = str("%s" % cur.fetchone())
+        value2 = str(imagehash.average_hash(Image.open('img/rasp-1.jpg')))
+        print("%s" % value , "%s" % value2)
 
-    if value2 == value:
-        print("bomzh")
-    else: 
-        print("hay csta")
-        cur.execute("UPDATE hashes SET hash = '%s'"
-                      % (value2))
-    
-        c.commit()
+        if value2 == value:
+            print("No changes.")
+            time.sleep(60)
+        else: 
+            print("Changed detected. Sending...")
+            cur.execute("UPDATE hashes SET hash = '%s'"
+                        % (value2))
         
-        msg = bot.send_message(681875938, 'Расписание:>')
-        bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
+            c.commit()
+            
+            msg = bot.send_message(681875938, 'Расписание:>')
+            bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
 
-    time.sleep(600)
+            time.sleep(60)
+    except:
+        print("No schelude detected.")
+        time.sleep(2)

@@ -3,7 +3,7 @@ import test
 from PIL import Image
 import imagehash
 
-c = sql.connect("game.db")
+c = sql.connect("data.db")
 cur = c.cursor()
 
 try:
