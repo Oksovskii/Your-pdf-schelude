@@ -1,5 +1,5 @@
 const.py
 *.pyc
-game.db
+*.db
 *.jpg
 *.pdf
