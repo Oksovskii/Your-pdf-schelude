@@ -18,6 +18,25 @@ cur = c.cursor()
 msg = bot.send_message(681875938, 'Beta-script activated. Server time:%s' %
                         str(datetime.strftime(datetime.now(), "%H:%M:%S")))
 
+#cheking db
+try:
+    cur.execute('''SELECT hash FROM hashes''')
+    print("DB detected. Working fine.")
+    print("Elementary hash: {%s}" % cur.fetchone())
+except:
+    print("DB is not detected. Creating\n")
+    cur.execute('''CREATE TABLE hashes
+            (hash)''')
+
+    cur.execute("""INSERT INTO hashes (hash) 
+                     VALUES('%s')""" % (
+                        str(hash("1"))))
+
+    c.commit()
+    cur.execute('''SELECT hash FROM hashes''')
+    print("DB created", "\nHash: {%s}" % cur.fetchone())
+    c.close()
+
 def schelude():
     get_path = os.path.abspath(os.curdir)
 
@@ -38,7 +57,7 @@ def schelude():
     url = 'http://rasp.kolledgsvyazi.ru/spo.pdf' #link for your schelude in pdf format
     r = requests.get(url, allow_redirects=True)
     open('pdf/spo.pdf', 'wb').write(r.content)
-    print('File downloaded\n')
+    print('File downloaded')
 
     # converting pdf-file to img {.jpeg}
     convert_from_path(
@@ -51,7 +70,7 @@ while True:
         cur.execute('''SELECT hash FROM hashes''')
         value = str("%s" % cur.fetchone())
         value2 = str(imagehash.average_hash(Image.open('img/rasp-1.jpg')))
-        print("%s" % value , "%s" % value2)
+        print("\nHash in DB {%s}" % value, "\nHash of downloaded img {%s}\n" % value2)
 
         if value2 == value:
             print("No changes.")
@@ -65,6 +84,7 @@ while True:
             
             msg = bot.send_message(681875938, 'Расписание:>')
             bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
+            print("\nSended.")
 
             time.sleep(60)
     except: #if schelude is not deteccted time delay 2 sec.
