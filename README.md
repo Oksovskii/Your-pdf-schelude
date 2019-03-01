@@ -8,12 +8,11 @@ You need to download this module for stability work:
 Not python modules:
 1) poppler-utils - UBUNTU; https://blog.alivate.com.au/poppler-windows/ - WINDOWS
 
-# Using auto script
+# Using auto script {func.py}
 1) Download all modules which are specified above.
-2) Start {start_db.py} with command {python3 start_db.py} to create DB.
-3) Start file {func.py} to begin auto-send schelude after change.
+2) Start file {func.py} to begin auto-send schelude after change md5 sum in DB.
 
-# Using Bot
+# Using Bot {main.py}
 1) Change in 10 line 1st argumen on your ID for logs.
 2) Create file {const.py} and add your key. Example {token = 'Your_token'}.
 3) Start {main.py} with comman {python3 main.py}.
