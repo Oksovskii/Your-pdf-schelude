@@ -46,7 +46,7 @@ def schelude():
     print('File converted\nStop working...')
 
 while True:
-    try:
+    try: #trying to download schelude
         schelude()
         cur.execute('''SELECT hash FROM hashes''')
         value = str("%s" % cur.fetchone())
@@ -55,7 +55,7 @@ while True:
 
         if value2 == value:
             print("No changes.")
-            time.sleep(60)
+            time.sleep(30)
         else: 
             print("Changed detected. Sending...")
             cur.execute("UPDATE hashes SET hash = '%s'"
@@ -66,7 +66,7 @@ while True:
             msg = bot.send_message(681875938, 'Расписание:>')
             bot.send_photo(681875938, photo=open('img/rasp-1.jpg', 'rb'))
 
-            time.sleep(60)
-    except:
+            time.sleep(30)
+    except: #if schelude is not deteccted time delay 2 sec.
         print("No schelude detected.")
         time.sleep(2)
