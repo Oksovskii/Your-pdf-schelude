@@ -1,5 +1,5 @@
 const.py
-/.vscode/settings.json
+/.vscode/*.json
 *.pyc
 *.pdf
 *.jpg
