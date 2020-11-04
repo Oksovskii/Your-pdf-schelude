@@ -1,2 +1,4 @@
 const.py
 *.pyc
+*.pdf
+*.jpg
